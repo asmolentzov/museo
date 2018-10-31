@@ -72,21 +72,18 @@ class CuratorTest < Minitest::Test
   end
   
   def test_it_can_add_artists
-    skip
     @curator.add_artist(@artist_1)
     @curator.add_artist(@artist_2)
     assert_equal [@artist_1, @artist_2], @curator.artists
   end
   
   def test_it_can_return_the_first_artist
-    skip
     @curator.add_artist(@artist_1)
     @curator.add_artist(@artist_2)
     assert_equal @artist_1, @curator.artists.first
   end
   
   def test_it_can_return_the_name_of_artists
-    skip
     @curator.add_artist(@artist_1)
     @curator.add_artist(@artist_2)
     expected = "Henri Cartier-Bresson"
@@ -94,13 +91,15 @@ class CuratorTest < Minitest::Test
   end
   
   def test_it_can_find_artist_by_id
-    skip
+    @curator.add_artist(@artist_1)
+    @curator.add_artist(@artist_2)
     assert_equal @artist_1, @curator.find_artist_by_id("1")
   end
   
   def test_it_can_find_photograph_by_id
-    skip
-    assert_equal @photo_2, curator.find_photograph_by_id("2")
+    @curator.add_photograph(@photo_1)
+    @curator.add_photograph(@photo_2)
+    assert_equal @photo_2, @curator.find_photograph_by_id("2")
   end
   
 end
