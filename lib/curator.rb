@@ -1,3 +1,5 @@
+require './lib/file_io'
+
 class Curator
   
   attr_reader :artists, :photographs
@@ -56,5 +58,37 @@ class Curator
     end.flatten
   end
   
+  def load_artists(file_path)
+    artists = FileIO.load_artists(file_path)
+    artists.each do |artist|
+      add_artist(Artist.new(artist))
+    end
+  end
   
+  def load_photographs(file_path)
+    photos = FileIO.load_photographs(file_path)
+    photos.each do |photo|
+      add_photograph(Photograph.new(photo))
+    end
+  end
+  
+  def photographs_taken_between(years)
+    photos = []
+    years.each do |year|
+      photos << @photographs.find_all do |photo|
+        photo.year == year.to_s
+      end
+    end
+    photos.flatten
+  end
+  
+  def artists_photographs_by_age(artist)
+    photos = find_photographs_by_artist(artist)    
+    result = {}
+    photos.each do |photo|
+      age = photo.year.to_i - artist.born.to_i
+      result[age] = photo.name
+    end
+    result
+  end
 end

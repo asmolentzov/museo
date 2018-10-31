@@ -142,7 +142,6 @@ class CuratorTest < Minitest::Test
   end
   
   def test_it_can_load_artists_from_csv
-    skip
     curator = Curator.new
     curator.load_artists('./data/artists.csv')
     assert_equal 6, curator.artists.size
@@ -151,21 +150,20 @@ class CuratorTest < Minitest::Test
   end
   
   def test_it_can_find_all_photographs_taken_between_range
-    skip
     curator = Curator.new
     curator.load_photographs('./data/photographs.csv')
     actual = curator.photographs_taken_between(1950..1965)
     assert_equal 2, actual.size
-    assert_equal 1, actual.first.id
-    assert_equal 4, actual.last.id
+    assert_equal "1", actual.first.id
+    assert_equal "4", actual.last.id
   end
   
   def test_it_can_find_photographs_taken_by_artists_at_age
-    skip
     curator = Curator.new
     curator.load_photographs('./data/photographs.csv')
     curator.load_artists('./data/artists.csv')
     expected = {44=>"Identical Twins, Roselle, New Jersey", 39=>"Child with Toy Hand Grenade in Central Park"}
+    diane_arbus = curator.find_artist_by_id("3")
     actual = curator.artists_photographs_by_age(diane_arbus)
     assert_equal expected, actual
   end
