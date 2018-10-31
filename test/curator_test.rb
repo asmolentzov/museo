@@ -133,4 +133,41 @@ class CuratorTest < Minitest::Test
     assert_equal [], @curator.photographs_taken_by_artists_from("Argentina")
   end
   
+  def test_it_can_load_photographs_from_csv
+    curator = Curator.new
+    curator.load_photographs('./data/photographs.csv')
+    assert_equal 4, curator.photographs.size
+    expected = "Rue Mouffetard, Paris (Boy with Bottles)"
+    assert_equal expected, curator.photographs.first.name
+  end
+  
+  def test_it_can_load_artists_from_csv
+    skip
+    curator = Curator.new
+    curator.load_artists('./data/artists.csv')
+    assert_equal 6, curator.artists.size
+    expected = "Henri Cartier-Bresson"
+    assert_equal expected, curator.artists.first.name
+  end
+  
+  def test_it_can_find_all_photographs_taken_between_range
+    skip
+    curator = Curator.new
+    curator.load_photographs('./data/photographs.csv')
+    actual = curator.photographs_taken_between(1950..1965)
+    assert_equal 2, actual.size
+    assert_equal 1, actual.first.id
+    assert_equal 4, actual.last.id
+  end
+  
+  def test_it_can_find_photographs_taken_by_artists_at_age
+    skip
+    curator = Curator.new
+    curator.load_photographs('./data/photographs.csv')
+    curator.load_artists('./data/artists.csv')
+    expected = {44=>"Identical Twins, Roselle, New Jersey", 39=>"Child with Toy Hand Grenade in Central Park"}
+    actual = curator.artists_photographs_by_age(diane_arbus)
+    assert_equal expected, actual
+  end
+  
 end
