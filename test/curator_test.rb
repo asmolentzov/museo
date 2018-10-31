@@ -137,6 +137,7 @@ class CuratorTest < Minitest::Test
     curator = Curator.new
     curator.load_photographs('./data/photographs.csv')
     assert_equal 4, curator.photographs.size
+    assert_instance_of Photograph, curator.photographs.first
     expected = "Rue Mouffetard, Paris (Boy with Bottles)"
     assert_equal expected, curator.photographs.first.name
   end
@@ -145,6 +146,7 @@ class CuratorTest < Minitest::Test
     curator = Curator.new
     curator.load_artists('./data/artists.csv')
     assert_equal 6, curator.artists.size
+    assert_instance_of Artist, curator.artists.first
     expected = "Henri Cartier-Bresson"
     assert_equal expected, curator.artists.first.name
   end
