@@ -83,19 +83,7 @@ class CuratorTest < Minitest::Test
     curator.add_photograph(@photo_1)
     curator.add_photograph(@photo_2)
     assert_equal [@photo_1, @photo_2], curator.photographs
-  end
-  
-  def test_it_can_return_the_first_photograph
-    curator = Curator.new
-    curator.add_photograph(@photo_1)
-    curator.add_photograph(@photo_2)
     assert_equal @photo_1, curator.photographs.first
-  end
-  
-  def test_it_can_return_the_name_of_photographs
-    curator = Curator.new
-    curator.add_photograph(@photo_1)
-    curator.add_photograph(@photo_2)
     expected = "Rue Mouffetard, Paris (Boy with Bottles)"
     assert_equal expected, curator.photographs.first.name
   end
@@ -105,19 +93,7 @@ class CuratorTest < Minitest::Test
     curator.add_artist(@artist_1)
     curator.add_artist(@artist_2)
     assert_equal [@artist_1, @artist_2], curator.artists
-  end
-  
-  def test_it_can_return_the_first_artist
-    curator = Curator.new
-    curator.add_artist(@artist_1)
-    curator.add_artist(@artist_2)
     assert_equal @artist_1, curator.artists.first
-  end
-  
-  def test_it_can_return_the_name_of_artists
-    curator = Curator.new
-    curator.add_artist(@artist_1)
-    curator.add_artist(@artist_2)
     expected = "Henri Cartier-Bresson"
     assert_equal expected, curator.artists.first.name
   end
