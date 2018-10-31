@@ -1,7 +1,6 @@
 require 'minitest/autorun'
 require 'minitest/pride'
 require './lib/photograph'
-require './lib/artist'
 
 class PhotographTest < Minitest::Test
   
@@ -22,6 +21,7 @@ class PhotographTest < Minitest::Test
   def test_it_has_attributes
     assert_equal "1", @photograph.id
     assert_equal "Rue Mouffetard, Paris (Boy with Bottles)", @photograph.name
+    assert_equal "4", @photograph.artist_id
     assert_equal "1954", @photograph.year
   end
   
