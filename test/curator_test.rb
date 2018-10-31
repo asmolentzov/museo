@@ -137,27 +137,24 @@ class CuratorTest < Minitest::Test
   end
   
   def test_it_can_find_photographs_by_artist
-    skip
     diane_arbus = @curator.find_artist_by_id("3")
     actual = @curator.find_photographs_by_artist(diane_arbus)
     assert_equal [@photo_3, @photo_4], actual
   end
   
   def test_it_can_find_artists_with_multiple_photographs
-    skip
     diane_arbus = @curator.find_artist_by_id("3")
     actual = @curator.artists_with_multiple_photographs
     assert_equal [@artist_3], actual
     assert_equal 1, @curator.artists_with_multiple_photographs.length
-    assert diane_arbus == curator.artists_with_multiple_photographs.first
+    assert diane_arbus == @curator.artists_with_multiple_photographs.first
   end
   
   def test_it_can_find_photographs_by_artists_from_country
-    skip
     expected = [@photo_2, @photo_3, @photo_4]
     actual = @curator.photographs_taken_by_artists_from("United States")
     assert_equal expected, actual
-    assert_equal [], curator.photographs_taken_by_artists_from("Argentina")
+    assert_equal [], @curator.photographs_taken_by_artists_from("Argentina")
   end
   
 end
